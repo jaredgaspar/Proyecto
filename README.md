@@ -70,3 +70,31 @@ Posteriormente, descargamos datastax Devcenter.
 [![image10.png](https://i.postimg.cc/027TSM96/image10.png)](https://postimg.cc/VdLZQNr1)
 [![image20.png](https://i.postimg.cc/kXrrDFP3/image20.png)](https://postimg.cc/4n12Sc3B)
 
+Una aplicacion bastante interesante encontrada para Cassandra en Kubernetes se puede encontrrar en el siguiente enlace:
+```
+https://kubernetes.io/docs/tutorials/stateful-application/cassandra/
+```
+
+El cual muestra cómo ejecutar Apache Cassandra en Kubernetes. Cassandra, una base de datos, necesita almacenamiento persistente para proporcionar durabilidad de los datos (estado de la aplicación). En este ejemplo, un proveedor de semillas personalizado de Cassandra permite que la base de datos descubra nuevas instancias de Cassandra a medida que se unen al clúster de Cassandra.
+
+Donde primero se debe servicio para cassandra sin encabezado utilizando un archivo .yaml, en este caso:
+```
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: cassandra
+  name: cassandra
+spec:
+  clusterIP: None
+  ports:
+  - port: 9042
+  selector:
+    app: cassandra
+```
+
+Obtenida directamente desde:
+```
+kubectl apply -f https://k8s.io/examples/application/cassandra/cassandra-service.yaml
+```
+En el codigo del sistema.
